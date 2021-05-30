@@ -1,6 +1,6 @@
 package com.nhom18.server.entity.group;
 
-import com.wander.sqa.entity.registration.AssignedSubject;
+import com.nhom18.server.entity.registration.AssignedSubject;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.nhom18.server.dao;
 
 
-import com.wander.sqa.entity.registration.Registration;
+import com.nhom18.server.entity.registration.Registration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

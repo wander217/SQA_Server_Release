@@ -1,7 +1,7 @@
 package com.nhom18.server.controller.registration.service;
 
-import com.wander.sqa.controller.registration.dto.SubjectGroupDTO;
-import com.wander.sqa.controller.registration.dto.SubjectGroupRequest;
+import com.nhom18.server.controller.registration.dto.SubjectGroupDTO;
+import com.nhom18.server.controller.registration.dto.SubjectGroupRequest;
 
 import java.util.List;
 

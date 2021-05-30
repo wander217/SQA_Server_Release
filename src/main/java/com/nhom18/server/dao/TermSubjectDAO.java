@@ -1,6 +1,6 @@
 package com.nhom18.server.dao;
 
-import com.wander.sqa.entity.group.TermSubject;
+import com.nhom18.server.entity.group.TermSubject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

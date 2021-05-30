@@ -1,6 +1,6 @@
 package com.nhom18.server.dao;
 
-import com.wander.sqa.entity.user.Teacher;
+import com.nhom18.server.entity.user.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

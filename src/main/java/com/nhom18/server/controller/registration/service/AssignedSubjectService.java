@@ -1,9 +1,9 @@
 package com.nhom18.server.controller.registration.service;
 
-import com.wander.sqa.controller.registration.dto.AssignedSubjectDTO;
-import com.wander.sqa.controller.registration.dto.AssignedSubjectRequest;
-import com.wander.sqa.exception.OutOfRegistrationTimeException;
-import com.wander.sqa.exception.TermNotFoundException;
+import com.nhom18.server.controller.registration.dto.AssignedSubjectDTO;
+import com.nhom18.server.controller.registration.dto.AssignedSubjectRequest;
+import com.nhom18.server.exception.OutOfRegistrationTimeException;
+import com.nhom18.server.exception.TermNotFoundException;
 
 import java.util.List;
 

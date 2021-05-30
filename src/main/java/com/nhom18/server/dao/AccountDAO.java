@@ -1,6 +1,6 @@
 package com.nhom18.server.dao;
 
-import com.wander.sqa.entity.user.Account;
+import com.nhom18.server.entity.user.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

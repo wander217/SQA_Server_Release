@@ -1,10 +1,10 @@
 package com.nhom18.server.controller.account.service;
 
-import com.wander.sqa.controller.account.dto.AccountDTO;
-import com.wander.sqa.controller.account.dto.ForgotRequest;
-import com.wander.sqa.controller.account.dto.LoginRequest;
-import com.wander.sqa.exception.PasswordNotMatchException;
-import com.wander.sqa.exception.UsernameNotFoundException;
+import com.nhom18.server.controller.account.dto.AccountDTO;
+import com.nhom18.server.controller.account.dto.ForgotRequest;
+import com.nhom18.server.controller.account.dto.LoginRequest;
+import com.nhom18.server.exception.PasswordNotMatchException;
+import com.nhom18.server.exception.UsernameNotFoundException;
 
 public interface AccountService{
 	AccountDTO findByUsername(LoginRequest loginRequest)

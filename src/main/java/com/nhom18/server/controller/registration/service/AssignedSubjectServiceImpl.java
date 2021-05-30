@@ -1,15 +1,15 @@
 package com.nhom18.server.controller.registration.service;
 
-import com.wander.sqa.controller.registration.dto.AssignedSubjectDTO;
-import com.wander.sqa.controller.registration.dto.AssignedSubjectRequest;
-import com.wander.sqa.dao.AssignedSubjectDAO;
-import com.wander.sqa.dao.TermDAO;
-import com.wander.sqa.dao.TermSubjectDAO;
-import com.wander.sqa.entity.group.Term;
-import com.wander.sqa.entity.group.TermSubject;
-import com.wander.sqa.entity.registration.AssignedSubject;
-import com.wander.sqa.exception.OutOfRegistrationTimeException;
-import com.wander.sqa.exception.TermNotFoundException;
+import com.nhom18.server.controller.registration.dto.AssignedSubjectDTO;
+import com.nhom18.server.controller.registration.dto.AssignedSubjectRequest;
+import com.nhom18.server.dao.AssignedSubjectDAO;
+import com.nhom18.server.dao.TermDAO;
+import com.nhom18.server.dao.TermSubjectDAO;
+import com.nhom18.server.entity.group.Term;
+import com.nhom18.server.entity.group.TermSubject;
+import com.nhom18.server.entity.registration.AssignedSubject;
+import com.nhom18.server.exception.OutOfRegistrationTimeException;
+import com.nhom18.server.exception.TermNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

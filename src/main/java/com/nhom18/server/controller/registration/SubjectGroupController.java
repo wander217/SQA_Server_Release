@@ -1,8 +1,8 @@
 package com.nhom18.server.controller.registration;
 
-import com.wander.sqa.controller.registration.dto.SubjectGroupDTO;
-import com.wander.sqa.controller.registration.dto.SubjectGroupRequest;
-import com.wander.sqa.controller.registration.service.SubjectGroupService;
+import com.nhom18.server.controller.registration.dto.SubjectGroupDTO;
+import com.nhom18.server.controller.registration.dto.SubjectGroupRequest;
+import com.nhom18.server.controller.registration.service.SubjectGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

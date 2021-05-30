@@ -1,6 +1,6 @@
 package com.nhom18.server.dao;
 
-import com.wander.sqa.entity.group.Term;
+import com.nhom18.server.entity.group.Term;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

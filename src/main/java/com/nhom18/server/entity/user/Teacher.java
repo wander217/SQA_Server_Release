@@ -1,7 +1,7 @@
 package com.nhom18.server.entity.user;
 
-import com.wander.sqa.entity.registration.AssignedSubject;
-import com.wander.sqa.entity.registration.Registration;
+import com.nhom18.server.entity.registration.AssignedSubject;
+import com.nhom18.server.entity.registration.Registration;
 
 import javax.persistence.*;
 import java.io.Serializable;

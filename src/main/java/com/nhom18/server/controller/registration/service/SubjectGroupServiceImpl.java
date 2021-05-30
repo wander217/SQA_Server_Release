@@ -1,14 +1,14 @@
 package com.nhom18.server.controller.registration.service;
 
-import com.wander.sqa.controller.registration.dto.GroupInfoDTO;
-import com.wander.sqa.controller.registration.dto.SubjectGroupDTO;
-import com.wander.sqa.controller.registration.dto.SubjectGroupRequest;
-import com.wander.sqa.dao.SubjectGroupDAO;
-import com.wander.sqa.dao.TermWeekDAO;
-import com.wander.sqa.entity.group.GroupInfo;
-import com.wander.sqa.entity.group.LearningWeek;
-import com.wander.sqa.entity.group.SubjectGroup;
-import com.wander.sqa.entity.group.TermWeek;
+import com.nhom18.server.controller.registration.dto.GroupInfoDTO;
+import com.nhom18.server.controller.registration.dto.SubjectGroupDTO;
+import com.nhom18.server.controller.registration.dto.SubjectGroupRequest;
+import com.nhom18.server.dao.SubjectGroupDAO;
+import com.nhom18.server.dao.TermWeekDAO;
+import com.nhom18.server.entity.group.GroupInfo;
+import com.nhom18.server.entity.group.LearningWeek;
+import com.nhom18.server.entity.group.SubjectGroup;
+import com.nhom18.server.entity.group.TermWeek;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

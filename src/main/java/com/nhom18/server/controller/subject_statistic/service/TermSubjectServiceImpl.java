@@ -1,9 +1,9 @@
 package com.nhom18.server.controller.subject_statistic.service;
 
-import com.wander.sqa.controller.subject_statistic.dto.SubjectRequest;
-import com.wander.sqa.controller.subject_statistic.dto.TermSubjectStatDTO;
-import com.wander.sqa.dao.TermSubjectDAO;
-import com.wander.sqa.entity.group.TermSubject;
+import com.nhom18.server.controller.subject_statistic.dto.SubjectRequest;
+import com.nhom18.server.controller.subject_statistic.dto.TermSubjectStatDTO;
+import com.nhom18.server.dao.TermSubjectDAO;
+import com.nhom18.server.entity.group.TermSubject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

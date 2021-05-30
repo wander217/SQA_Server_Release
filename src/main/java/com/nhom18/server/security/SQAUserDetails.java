@@ -1,6 +1,6 @@
 package com.nhom18.server.security;
 
-import com.wander.sqa.entity.user.Account;
+import com.nhom18.server.entity.user.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

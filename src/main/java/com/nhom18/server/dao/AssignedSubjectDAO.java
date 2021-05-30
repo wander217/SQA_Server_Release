@@ -1,7 +1,7 @@
 package com.nhom18.server.dao;
 
 
-import com.wander.sqa.entity.registration.AssignedSubject;
+import com.nhom18.server.entity.registration.AssignedSubject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,13 +1,13 @@
 package com.nhom18.server.controller.term.service;
 
-import com.wander.sqa.controller.term.dto.TermDTO;
-import com.wander.sqa.controller.term.dto.TermRequest;
-import com.wander.sqa.dao.RegistrationDAO;
-import com.wander.sqa.dao.TermDAO;
-import com.wander.sqa.entity.group.Term;
-import com.wander.sqa.entity.registration.Registration;
-import com.wander.sqa.exception.RegTimeException;
-import com.wander.sqa.exception.TermNotFoundException;
+import com.nhom18.server.controller.term.dto.TermDTO;
+import com.nhom18.server.controller.term.dto.TermRequest;
+import com.nhom18.server.dao.RegistrationDAO;
+import com.nhom18.server.dao.TermDAO;
+import com.nhom18.server.entity.group.Term;
+import com.nhom18.server.entity.registration.Registration;
+import com.nhom18.server.exception.RegTimeException;
+import com.nhom18.server.exception.TermNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

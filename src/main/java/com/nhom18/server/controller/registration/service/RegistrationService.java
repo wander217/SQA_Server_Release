@@ -1,8 +1,8 @@
 package com.nhom18.server.controller.registration.service;
 
-import com.wander.sqa.controller.registration.dto.*;
-import com.wander.sqa.controller.teacher_statistic.dto.TeacherHistoryRequest;
-import com.wander.sqa.exception.*;
+import com.nhom18.server.controller.registration.dto.*;
+import com.nhom18.server.controller.teacher_statistic.dto.TeacherHistoryRequest;
+import com.nhom18.server.exception.*;
 
 import java.util.List;
 

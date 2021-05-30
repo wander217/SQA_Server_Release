@@ -1,11 +1,11 @@
 package com.nhom18.server.controller.teacher_statistic;
 
-import com.wander.sqa.controller.registration.dto.RegistrationDTO;
-import com.wander.sqa.controller.teacher_statistic.dto.TeacherHistoryRequest;
-import com.wander.sqa.controller.teacher_statistic.dto.TeacherStatDTO;
-import com.wander.sqa.controller.teacher_statistic.dto.TeacherStatRequest;
-import com.wander.sqa.controller.registration.service.RegistrationService;
-import com.wander.sqa.controller.subject_statistic.service.TeacherService;
+import com.nhom18.server.controller.registration.dto.RegistrationDTO;
+import com.nhom18.server.controller.teacher_statistic.dto.TeacherHistoryRequest;
+import com.nhom18.server.controller.teacher_statistic.dto.TeacherStatDTO;
+import com.nhom18.server.controller.teacher_statistic.dto.TeacherStatRequest;
+import com.nhom18.server.controller.registration.service.RegistrationService;
+import com.nhom18.server.controller.subject_statistic.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

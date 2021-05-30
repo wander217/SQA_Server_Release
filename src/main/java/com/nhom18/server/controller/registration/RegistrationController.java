@@ -1,11 +1,11 @@
 package com.nhom18.server.controller.registration;
 
-import com.wander.sqa.controller.registration.dto.RegisteredGroupRequest;
-import com.wander.sqa.controller.registration.dto.RegistrationDTO;
-import com.wander.sqa.controller.registration.dto.RegistrationRequest;
-import com.wander.sqa.exception.*;
-import com.wander.sqa.controller.registration.service.RegistrationService;
-import com.wander.sqa.controller.subject_statistic.service.TeacherService;
+import com.nhom18.server.controller.registration.dto.RegisteredGroupRequest;
+import com.nhom18.server.controller.registration.dto.RegistrationDTO;
+import com.nhom18.server.controller.registration.dto.RegistrationRequest;
+import com.nhom18.server.exception.*;
+import com.nhom18.server.controller.registration.service.RegistrationService;
+import com.nhom18.server.controller.subject_statistic.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
