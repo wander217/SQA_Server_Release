@@ -30,7 +30,7 @@ public class TeacherController {
 	//Lấy thống kê đăng kí theo giảng viên
 	@PostMapping(path = "/registration")
 	@PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE')")
-	public ResponseEntity<List<TeacherStatDTO>> getAll(@RequestBody TeacherStatRequest t){
+	public ResponseEntity<List<TeacherStatDTO>> getAll(@Valid @RequestBody TeacherStatRequest t){
 		List<TeacherStatDTO> teacherDTOList = this.teacherService.getAll(t);
 		return new ResponseEntity<>(teacherDTOList,HttpStatus.OK);
 	}
@@ -41,5 +41,18 @@ public class TeacherController {
 	public ResponseEntity<List<RegistrationDTO>> findAllByTeacher(@RequestBody TeacherHistoryRequest t){
 		List<RegistrationDTO> registrationDTOList = this.registrationService.findAllByTeacher(t);
 		return new ResponseEntity<>(registrationDTOList, HttpStatus.OK);
+	}
+
+	//Ngoại lệ khi nhập sai
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public List<String> handleValidationExceptions(
+			MethodArgumentNotValidException ex) {
+		List<String> errors = new ArrayList<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String errorMessage = error.getDefaultMessage();
+			errors.add(errorMessage);
+		});
+		return errors;
 	}
 }

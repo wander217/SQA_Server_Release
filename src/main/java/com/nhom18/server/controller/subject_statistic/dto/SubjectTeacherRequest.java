@@ -5,7 +5,7 @@ import javax.validation.constraints.Pattern;
 
 public class SubjectTeacherRequest {
     @Pattern(
-            regexp = ("^id|tchCode|fullname"),
+            regexp = ("^id|tchCode|fullname$"),
             message = ("Thuộc tính tìm kiếm không hợp lệ!")
     )
     private String properties;
