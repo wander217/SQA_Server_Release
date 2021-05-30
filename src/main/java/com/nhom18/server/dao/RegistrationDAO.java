@@ -32,7 +32,7 @@ public interface RegistrationDAO extends PagingAndSortingRepository<Registration
 	@Query("SELECT r FROM Registration r WHERE r.subjectGroup.termSubject.term.id " +
 			"IN (SELECT MAX(t.id) FROM Term t) AND r.teacher.id=:tchId " +
 			"AND lower(r.subjectGroup.code) LIKE %:filter%")
-	List<Registration> findAllBySubjectGroupCode(@Param("filter") String filter,
+	Page<Registration> findAllBySubjectGroupCode(@Param("filter") String filter,
 												 @Param("tchId")long tchId, Pageable pageable);
 
 	//Tìm kiếm lịch sử của giảng viên theo tên môn học

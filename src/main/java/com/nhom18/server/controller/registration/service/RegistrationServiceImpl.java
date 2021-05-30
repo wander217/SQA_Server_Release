@@ -69,12 +69,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 								.getTotalElements())).collect(Collectors.toList());
 			}
 			default:{
-				List<Registration> registrationList = this.registrationDAO
+				Page<Registration> registrationList = this.registrationDAO
 						.findAllBySubjectGroupCode(t.getSearchData().toLowerCase()
 								,t.getTeacherId(),pageable);
 				return registrationList.stream()
-						.map(item->convertToDTO(item,7))
-						.collect(Collectors.toList());
+						.map(item->convertToDTO(item,registrationList.
+								getTotalElements())).collect(Collectors.toList());
 			}
 		}
 
