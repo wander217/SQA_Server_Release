@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface TeacherDAO extends PagingAndSortingRepository<Teacher,Long> {
 	//Lấy lên theo tên đăng nhập
 	@Query("SELECT t FROM Teacher t WHERE t.account.username=:u")
-	public Optional<Teacher> findByUsername(@Param("u") String u);
+    Optional<Teacher> findByUsername(@Param("u") String u);
 
 	//Lấy danh sách giảng viên được đã đăng kí đủ theo mã giảng viên
 	@Query("SELECT a.teacher FROM AssignedSubject a " +
@@ -65,7 +65,7 @@ public interface TeacherDAO extends PagingAndSortingRepository<Teacher,Long> {
 			"AND a.numberOfGroup IN (SELECT COUNT(r) FROM Registration r " +
 			"WHERE r.teacher.id= a.teacher.id AND r.isEnable=true " +
 			"AND r.subjectGroup.termSubject.id=a.termSubject.id) GROUP BY a.teacher")
-	public List<Object[]> findTeacherWithNumberOfFullRegGroup();
+    List<Object[]> findTeacherWithNumberOfFullRegGroup();
 
 	//Lấy tất cả giảng viên cùng số môn được giao
 	@Query( "SELECT a.teacher,COUNT(a) FROM AssignedSubject a " +
@@ -75,5 +75,5 @@ public interface TeacherDAO extends PagingAndSortingRepository<Teacher,Long> {
 					"CONCAT(' ',a.teacher.fullname.middlename,' ') " +
 				"ELSE ' ' END, a.teacher.fullname.lastname)) " +
 			"LIKE LOWER(CONCAT('%',:filter,'%')) GROUP BY a.teacher")
-	public List<Object[]> findTeacherWithNumberOfGroup(@Param("filter")String filter);
+    List<Object[]> findTeacherWithNumberOfGroup(@Param("filter") String filter);
 }

@@ -6,6 +6,7 @@ import com.nhom18.server.controller.subject_statistic.dto.SubjectTeacherStatDTO;
 import com.nhom18.server.controller.subject_statistic.dto.TermSubjectStatDTO;
 import com.nhom18.server.controller.subject_statistic.service.TermSubjectService;
 import com.nhom18.server.controller.subject_statistic.service.TeacherService;
+import com.nhom18.server.exception.TermNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,8 @@ public class TermSubjectController {
     //Lấy danh sách các môn
     @PostMapping (path = "/all")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE')")
-    public ResponseEntity<List<TermSubjectStatDTO>> getAll(@Valid @RequestBody SubjectRequest s){
+    public ResponseEntity<List<TermSubjectStatDTO>> getAll(@Valid @RequestBody SubjectRequest s)
+            throws TermNotFoundException {
         List<TermSubjectStatDTO> termSubjectDTOList = this.termSubjectService.getAll(s);
         return new ResponseEntity<>(termSubjectDTOList, HttpStatus.OK);
     }
@@ -61,5 +63,11 @@ public class TermSubjectController {
             errors.add(errorMessage);
         });
         return errors;
+    }
+
+    //Chưa có kì mới
+    @ExceptionHandler(TermNotFoundException.class)
+    public ResponseEntity<String> handleTermNotFoundException(){
+        return new ResponseEntity<>("Chưa có kì mới!",HttpStatus.BAD_REQUEST);
     }
 }

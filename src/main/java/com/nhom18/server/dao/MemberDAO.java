@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface MemberDAO extends JpaRepository<Member,Long> {
 	@Query("SELECT m FROM Member m WHERE m.account.username=:u")
-	public Optional<Member> findByUsername(@Param("u") String u);
+    Optional<Member> findByUsername(@Param("u") String u);
 }

@@ -10,5 +10,5 @@ public interface TermWeekDAO extends JpaRepository<TermWeek,Long> {
     @Query("SELECT tw FROM TermWeek tw " +
             "WHERE tw.term.id IN(SELECT MAX(t.id) FROM Term t) " +
             "ORDER BY tw.startDate asc")
-    public List<TermWeek> findAllTermWeekByLastTerm();
+    List<TermWeek> findAllTermWeekByLastTerm();
 }

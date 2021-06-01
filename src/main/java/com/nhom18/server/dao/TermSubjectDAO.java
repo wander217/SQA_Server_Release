@@ -15,8 +15,8 @@ public interface TermSubjectDAO extends PagingAndSortingRepository<TermSubject,L
             "FROM Registration r WHERE r.isEnable=true AND r.teacher.id=:tchId " +
             "AND r.subjectGroup.termSubject.term.id =:tId " +
             "GROUP BY r.subjectGroup.termSubject")
-    public List<Object[]> getTermSubjectWithRegCountByTeacher(@Param("tchId")long tchId,
-             @Param("tId")long tId);
+    List<Object[]> getTermSubjectWithRegCountByTeacher(@Param("tchId") long tchId,
+                                                       @Param("tId") long tId);
 
     //Lấy môn học đã giao của kì mới với số lượng giảng viên đăng kí đủ
     @Query("SELECT a.termSubject,COUNT(a) FROM AssignedSubject a " +
@@ -25,10 +25,12 @@ public interface TermSubjectDAO extends PagingAndSortingRepository<TermSubject,L
             "AND a.numberOfGroup IN (SELECT COUNT(r) From Registration r " +
             "WHERE r.subjectGroup.termSubject.id=a.termSubject.id " +
             "AND r.teacher.id=a.teacher.id AND r.isEnable=true) GROUP BY a.termSubject")
-    public List<Object[]> getTermSubjectWithRegCount(Pageable pageable,@Param("filter")String filter);
+    List<Object[]> getTermSubjectWithRegCount(Pageable pageable, @Param("filter") String filter);
 
     //Lấy môn học đã giao cùng tổng số giảng viên được giao
     @Query("SELECT a.termSubject,COUNT(a) FROM AssignedSubject a " +
-            "WHERE a.termSubject.subject.name LIKE %:filter% GROUP BY a.termSubject")
-    Page<Object[]> getTermSubjectWithTeacherCount(Pageable pageable, @Param("filter")String filter);
+            "WHERE a.termSubject.subject.name LIKE %:filter% " +
+            "AND a.termSubject.term.id = :tId GROUP BY a.termSubject")
+    Page<Object[]> getTermSubjectWithTeacherCount(Pageable pageable,
+                              @Param("filter")String filter,@Param("tId")long tId);
 }

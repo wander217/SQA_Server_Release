@@ -2,8 +2,11 @@ package com.nhom18.server.controller.subject_statistic.service;
 
 import com.nhom18.server.controller.subject_statistic.dto.SubjectRequest;
 import com.nhom18.server.controller.subject_statistic.dto.TermSubjectStatDTO;
+import com.nhom18.server.dao.TermDAO;
 import com.nhom18.server.dao.TermSubjectDAO;
+import com.nhom18.server.entity.group.Term;
 import com.nhom18.server.entity.group.TermSubject;
+import com.nhom18.server.exception.TermNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,9 +20,14 @@ import java.util.*;
 public class TermSubjectServiceImpl implements TermSubjectService{
     @Autowired
     private TermSubjectDAO termSubjectDAO;
+    @Autowired
+    private TermDAO termDAO;
 
     @Override
-    public List<TermSubjectStatDTO> getAll(SubjectRequest s) {
+    public List<TermSubjectStatDTO> getAll(SubjectRequest s) throws TermNotFoundException {
+        //Lấy term
+        Term term = this.termDAO.getLastTerm()
+                .orElseThrow(TermNotFoundException::new);
         //Tạo sort
         Sort sort = null;
         if(s.getProperties().equals("remember")||s.getProperties().equals("forgot")){
@@ -35,7 +43,7 @@ public class TermSubjectServiceImpl implements TermSubjectService{
         Pageable pageable = PageRequest.of(s.getPageNum(), s.getRecordPerPage(), sort);
         //Lấy danh sách môn học đã giao cùng với số lượng giảng viên được giao
         Page<Object[]> teacherAssignedSubject = this.termSubjectDAO
-                .getTermSubjectWithTeacherCount(pageable,s.getSearchData());
+                .getTermSubjectWithTeacherCount(pageable,s.getSearchData(),term.getId());
         //Nếu danh sách rỗng thì tức là chưa giao môn nào
         if(teacherAssignedSubject == null||teacherAssignedSubject.isEmpty()){
             return new ArrayList<>();

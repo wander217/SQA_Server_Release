@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface TermDAO extends JpaRepository<Term,Long> {
     @Query("SELECT t FROM Term t WHERE t.id IN (SELECT MAX(t1.id) FROM Term t1)")
-    public Optional<Term> getLastTerm();
+    Optional<Term> getLastTerm();
 }
