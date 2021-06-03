@@ -6,7 +6,7 @@ import javax.validation.constraints.Pattern;
 
 public class SubjectGroupRequest {
     @Pattern(
-        regexp = ("^code|learningDay|shift|numberOfTeacher$"),
+        regexp = ("^code|learningDay|shift$"),
         message = ("Thuộc tính sắp xếp không hợp lệ!")
     )
     private String properties;
