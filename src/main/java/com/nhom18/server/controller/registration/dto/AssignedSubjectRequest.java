@@ -3,7 +3,10 @@ package com.nhom18.server.controller.registration.dto;
 import javax.validation.constraints.Min;
 
 public class AssignedSubjectRequest {
-    @Min(1)
+    @Min(
+        value = 1,
+        message = "Mã giảng viên phải là số dương"
+    )
     private long teacherId;
     private String searchData;
 

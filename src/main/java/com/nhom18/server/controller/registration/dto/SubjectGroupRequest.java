@@ -24,7 +24,7 @@ public class SubjectGroupRequest {
     private int searchType;
     private String searchData;
     @Min(
-        value = 0,
+        value = 1,
         message = "Mã môn học phải là số dương"
     )
     private long termSubjectId;

@@ -102,11 +102,8 @@ public class SubjectGroupServiceImpl implements SubjectGroupService {
 				//thực hiện chuyển các tuần học về định dạng chỉ lấy chữ số cuối
 				int[] weekList = new int[termWeekList.size()];
 				for (LearningWeek learningWeek : groupInfo.getLearningWeek()) {
-					//Nếu nhóm được nghỉ tuần đấy thì không lấy
-					if(!learningWeek.isDesist()) {
-						Integer tmp = termWeekMap.get(learningWeek.getTermWeek().getId());
-						if(tmp !=null) weekList[tmp]=1;
-					}
+					Integer tmp = termWeekMap.get(learningWeek.getTermWeek().getId());
+					if(tmp !=null) weekList[tmp]=1;
 				}
 				//Chuyển đổi tuần học về định dạng mong muốn
 				String sWeek ="";
@@ -123,8 +120,9 @@ public class SubjectGroupServiceImpl implements SubjectGroupService {
 			subjectGroupDTO.setGroupInfo(groupInfoDTOList);
 			return subjectGroupDTO;
 		}).collect(Collectors.toList());
+		int tmp = s.getOrder().equals("asc")?1:-1;
 		if(s.getProperties().equals("shift")){
-			Collections.sort(ans,(x,y)->x.getGroupInfo()
+			Collections.sort(ans,(x,y)->tmp*x.getGroupInfo()
 					.get(0).getShift().compareTo(y
 							.getGroupInfo().get(0).getShift()));
 		}

@@ -68,16 +68,11 @@ public class AssignedSubjectServiceImpl implements AssignedSubjectService {
 	//Chuyển lại thành map
 	private Map<Long, Long> getMap(List<Object[]> list) {
 		Map<Long,Long> map = new HashMap<>();
-		try{
-			for(Object[] o:list){
-				TermSubject termSubject = (TermSubject)o[0];
-				Long count = (Long) o[1];
-				map.put(termSubject.getId(),count);
-			}
-			return map;
-		}catch (Exception e){
-			e.printStackTrace();
-			return map;
+		for(Object[] o:list){
+			TermSubject termSubject = (TermSubject)o[0];
+			Long count = (Long) o[1];
+			map.put(termSubject.getId(),count);
 		}
+		return map;
 	}
 }

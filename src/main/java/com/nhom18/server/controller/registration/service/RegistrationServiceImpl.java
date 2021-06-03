@@ -15,6 +15,7 @@ import com.nhom18.server.entity.group.Term;
 import com.nhom18.server.entity.registration.AssignedSubject;
 import com.nhom18.server.entity.registration.Registration;
 import com.nhom18.server.exception.*;
+import org.hibernate.loader.plan.build.internal.returns.CollectionFetchableElementCompositeGraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,8 +26,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -120,13 +121,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 		List<Registration> regGroupList = this.registrationDAO
 				.findAllBySubjectGroup(r.getSubjectGroupId());
 		//Nếu đăng kí rồi thì hủy đăng kí
-		for(Registration rg :regGroupList){
-			if(rg.getTeacher().getId()==r.getTeacherId()){
-				rg.setEnable(false);
-				this.registrationDAO.save(rg);
-				return;
-			}
+		List<Registration> rTmp = regGroupList.stream()
+				.filter(item-> item.getTeacher().getId()==r.getTeacherId())
+				.collect(Collectors.toList());
+		if(!rTmp.isEmpty()){
+			rTmp.get(0).setEnable(false);
+			this.registrationDAO.save(rTmp.get(0));
+			return;
 		}
+
 		//Lấy thông tin của nhóm
 		SubjectGroup subjectGroup = this.subjectGroupDAO
 				.findById(r.getSubjectGroupId())
@@ -159,12 +162,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	//Kiểm tra xem ngày học có bị trùng hay không
 	//Nếu ngày học bị trùng thì kiểm tra tiếp xem kíp học có trùng không
-	private Registration checkDuplicateTimetable(SubjectGroup subjectGroup, List<Registration> registrationList) {
+	public Registration checkDuplicateTimetable(SubjectGroup subjectGroup, List<Registration> registrationList) {
 		for(Registration r:registrationList){
-			if(!r.getSubjectGroup().getLearningDay().equals(subjectGroup.getLearningDay())){
-				continue;
-			}
-			if(checkDuplicateShift(r.getSubjectGroup().getGroupInfo(),subjectGroup.getGroupInfo())){
+			if(r.getSubjectGroup().getLearningDay().equals(subjectGroup.getLearningDay())
+					&&checkDuplicateShift(r.getSubjectGroup().getGroupInfo(),subjectGroup.getGroupInfo())){
 				return r;
 			}
 		}
@@ -173,27 +174,30 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	//Kiểm tra xem có kíp nào bị trùng lịch hay không
 	//Nếu có kíp trùng thì kiểm tra tuần học xem có tuần nào trùng hay không
-	private boolean checkDuplicateShift(Set<GroupInfo> groupInfo, Set<GroupInfo> groupInfo1) {
+	public boolean checkDuplicateShift(Set<GroupInfo> groupInfo, Set<GroupInfo> groupInfo1) {
+		Map<Long,GroupInfo> check = new HashMap<>();
 		for(GroupInfo g:groupInfo){
-			for (GroupInfo g1:groupInfo1){
-				if(g.getShift().getId()!=g1.getShift().getId()){
-					continue;
-				}
-				if(checkDuplicateLearningWeek(g.getLearningWeek(),g1.getLearningWeek())) {
-					return true;
-				}
+			check.put(g.getShift().getId(),g);
+		}
+		for(GroupInfo g:groupInfo1){
+			if(check.containsKey(g.getShift().getId())
+					&&checkDuplicateLearningWeek(check.get(g.getShift()
+					.getId()).getLearningWeek(),g.getLearningWeek())){
+				return true;
 			}
 		}
 		return false;
 	}
 
 	//Kiểm tra xem có tuần nào bị trùng lịch hay không
-	private boolean checkDuplicateLearningWeek(Set<LearningWeek> learningWeek, Set<LearningWeek> learningWeek1) {
+	public boolean checkDuplicateLearningWeek(Set<LearningWeek> learningWeek, Set<LearningWeek> learningWeek1) {
+		Set<Long> check = new HashSet<>();
 		for(LearningWeek l:learningWeek){
-			for(LearningWeek l1 :learningWeek1){
-				if(!l.isDesist()&&!l1.isDesist() &&l.getTermWeek().getId()==l1.getTermWeek().getId()){
-					return true;
-				}
+			check.add(l.getTermWeek().getId());
+		}
+		for(LearningWeek l:learningWeek1){
+			if(check.contains(l.getTermWeek().getId())){
+				return true;
 			}
 		}
 		return false;
@@ -201,7 +205,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
 	//Kiểm tra xem có đăng kí quá số nhóm được giao hay không
-	private boolean checkOverRegister(AssignedSubject assignedSubject, List<Registration> registrationList) {
+	public boolean checkOverRegister(AssignedSubject assignedSubject, List<Registration> registrationList) {
 		return registrationList.stream()
 				.filter(item->item.getSubjectGroup().getTermSubject()
 						.getId() == assignedSubject.getTermSubject().getId())
