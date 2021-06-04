@@ -41,4 +41,4 @@ public interface RegistrationDAO extends PagingAndSortingRepository<Registration
 			"AND lower(r.subjectGroup.termSubject.subject.name) LIKE %:filter%")
 	Page<Registration> findAllBySubjectName(@Param("filter") String filter,
 											@Param("tchId")long tchId, Pageable pageable);
-}
+	}

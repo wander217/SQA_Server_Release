@@ -18,6 +18,10 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +32,9 @@ import java.util.Optional;
 @SpringBootTest
 public class RegistrationServiceTest26 {
     @Autowired
-    private RegistrationServiceImpl service;;
+    private RegistrationServiceImpl service;
+    @Autowired
+    private RegistrationDAO dao;
 
     @Test
     @Transactional
@@ -39,6 +45,11 @@ public class RegistrationServiceTest26 {
         request.setSubjectGroupId(3);
         Assertions.assertDoesNotThrow(()->{
            service.doRegistration(request);
+           Sort s = Sort.by("id").descending();
+           Pageable page = PageRequest.of(0,1,s);
+           Registration r = dao.findAll(page).toList().get(0);
+           Assertions.assertEquals(2,r.getTeacher().getId());
+           Assertions.assertEquals(3,r.getSubjectGroup().getId());
         });
     }
 }
